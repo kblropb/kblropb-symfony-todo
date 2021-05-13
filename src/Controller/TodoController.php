@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Todo;
-use App\Entity\User;
+use App\Entity\{Todo, User};
 use App\Form\TodoFormType;
 use App\Repository\TodoRepository;
 use Doctrine\ORM\{OptimisticLockException, ORMException};

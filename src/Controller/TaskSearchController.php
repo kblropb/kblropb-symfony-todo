@@ -5,8 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Repository\TaskRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 class TaskSearchController extends BaseApiController
 {
@@ -18,7 +17,7 @@ class TaskSearchController extends BaseApiController
      *
      * @return Response
      */
-    public function search(Request $request, TaskRepository $taskRepository)
+    public function search(Request $request, TaskRepository $taskRepository): Response
     {
         /** @var User $user */
         $user = $this->getUser();

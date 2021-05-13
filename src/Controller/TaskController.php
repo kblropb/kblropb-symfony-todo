@@ -45,11 +45,8 @@ class TaskController extends BaseApiController
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function create(
-        int $listId,
-        Request $request,
-        TodoRepository $todoRepository
-    ): Response {
+    public function create(int $listId, Request $request, TodoRepository $todoRepository): Response
+    {
         $task = new Task();
 
         /** @var User $userId */
