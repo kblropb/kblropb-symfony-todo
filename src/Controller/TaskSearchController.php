@@ -7,6 +7,11 @@ use App\Repository\TaskRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
+/**
+ * Class TaskSearchController
+ *
+ * @package App\Controller
+ */
 class TaskSearchController extends BaseApiController
 {
     /**

@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use App\Repository\TodoRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\PersistentCollection;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
+ * Class Todo
+ *
+ * @package App\Entity
+ *
  * @ORM\Entity(repositoryClass=TodoRepository::class)
  */
 class Todo implements EntityInterface
@@ -33,7 +36,7 @@ class Todo implements EntityInterface
     private User $user;
 
     /**
-     * @OneToMany(targetEntity="Task", mappedBy="todo", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="todo", cascade={"remove"})
      */
     private PersistentCollection $tasks;
 

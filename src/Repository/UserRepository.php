@@ -3,9 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use Doctrine\ORM\{OptimisticLockException, ORMException};
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\{PasswordUpgraderInterface, UserInterface};
 
 /**
  * Class UserRepository
@@ -24,6 +24,12 @@ class UserRepository extends AbstractRepository implements PasswordUpgraderInter
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     *
+     * @param UserInterface $user
+     * @param string $newEncodedPassword
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
     {

@@ -12,6 +12,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
+/**
+ * Class TokenAuthenticator
+ *
+ * @package App\Security
+ */
 class TokenAuthenticator extends AbstractGuardAuthenticator
 {
     private EntityManagerInterface $em;
@@ -26,7 +31,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      *
      * @return bool
      */
-    public function supports(Request $request)
+    public function supports(Request $request): bool
     {
         return $request->headers->has('X-AUTH-TOKEN');
     }
@@ -82,6 +87,13 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
 
+    /**
+     * @param Request $request
+     * @param TokenInterface $token
+     * @param string $providerKey
+     *
+     * @return null
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
         return null;
@@ -89,6 +101,11 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * Called when authentication is needed, but it's not sent
+     *
+     * @param Request $request
+     * @param AuthenticationException|null $authException
+     *
+     * @return JsonResponse
      */
     public function start(Request $request, AuthenticationException $authException = null): JsonResponse
     {

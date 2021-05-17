@@ -24,9 +24,9 @@ class TaskRepository extends AbstractRepository
      * @param int $userId
      * @param int $listId
      *
-     * @return int|mixed|string
+     * @return array
      */
-    public function findUserTasksByTodoId(int $userId, int $listId)
+    public function findUserTasksByTodoId(int $userId, int $listId): array
     {
         return $this->createQueryBuilder('t')
             ->select('t.id, t.name, t.is_done')
@@ -44,10 +44,10 @@ class TaskRepository extends AbstractRepository
      * @param int $listId
      * @param int $taskId
      *
-     * @return int|mixed|string|null
+     * @return Task|null
      * @throws NonUniqueResultException
      */
-    public function findUserTaskByTodoIdAndTaskId(int $userId, int $listId, int $taskId)
+    public function findUserTaskByTodoIdAndTaskId(int $userId, int $listId, int $taskId): ?Task
     {
         $builder = $this->createQueryBuilder('t')
             ->leftJoin('t.todo', 'todo')
@@ -64,7 +64,13 @@ class TaskRepository extends AbstractRepository
             ->getOneOrNullResult();
     }
 
-    public function findUserTasksByCriteria(int $userId, array $filters)
+    /**
+     * @param int $userId
+     * @param array $filters
+     *
+     * @return array
+     */
+    public function findUserTasksByCriteria(int $userId, array $filters): array
     {
         $builder = $this
             ->createQueryBuilder('t')

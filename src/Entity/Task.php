@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
+ * Class Task
+ *
+ * @package App\Entity
+ *
  * @ORM\Entity(repositoryClass=TaskRepository::class)
  */
 class Task implements EntityInterface
@@ -26,8 +28,8 @@ class Task implements EntityInterface
     private ?string $name;
 
     /**
-     * @ManyToOne(targetEntity="Todo", inversedBy="tasks")
-     * @JoinColumn(name="todo_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Todo", inversedBy="tasks")
+     * @ORM\JoinColumn(name="todo_id", referencedColumnName="id", nullable=false)
      * @Serializer\Exclude
      */
     private ?Todo $todo;

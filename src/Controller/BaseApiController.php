@@ -7,6 +7,11 @@ use FOS\RestBundle\View\View;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
+/**
+ * Class BaseApiController
+ *
+ * @package App\Controller
+ */
 class BaseApiController extends AbstractFOSRestController
 {
     /**

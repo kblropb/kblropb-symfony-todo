@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
-use JMS\Serializer\Annotation\Expose;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * Class User
+ *
+ * @package App\Entity
+ *
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface, EntityInterface
