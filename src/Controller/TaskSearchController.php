@@ -21,7 +21,7 @@ class TaskSearchController extends BaseApiController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $tasks = $taskRepository->findUserTasksByCriteria($user->getId(), $request->get('filters'));
+        $tasks = $taskRepository->findUserTasksByCriteria($user->getId(), $request->query->all());
         $view = $this->view($tasks);
 
         return $this->handleView($view);

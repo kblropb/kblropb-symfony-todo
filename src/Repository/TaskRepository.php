@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Task;
 use Doctrine\ORM\NonUniqueResultException;
+use Symfony\Component\HttpFoundation\InputBag;
 
 /**
  * Class TaskRepository
@@ -76,8 +77,10 @@ class TaskRepository extends AbstractRepository
         ];
 
         if (isset($filters['name'])) {
-            $builder->andWhere('t.name = :name');
-            $params['name'] = $filters['name'];
+            $builder->andWhere(
+                $builder->expr()->like(' t.name ', ':name')
+            );
+            $params['name'] = '%' . $filters['name'] . '%';
         }
 
         if (isset($filters['is_done'])) {
